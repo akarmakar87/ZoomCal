@@ -4,4 +4,4 @@ This project uses the Google Calendar API with the Zoom desktop application to a
 
 The information regarding the class periods (eg. 2,4,7) and the meeting id and password for each one is all stored in the data.csv file.
 
-![full-screen layout](https://github.com/akarmakar87/TaskSite/blob/master/events.PNG)
+![full-screen layout](https://github.com/akarmakar87/ZoomCal/blob/master/events.PNG)
