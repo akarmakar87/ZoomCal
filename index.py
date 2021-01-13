@@ -11,11 +11,11 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-# If modifying these scopes, delete the file token.pickle.
+# If modifying these scopes, delete the file token.pickle.s
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 # Global variables
-events_df = pd.read_csv('.gitignore/data.csv')   # Create DataFrame to store event info
+events_df = pd.read_csv('data.csv')   # Create DataFrame to store event info
 day_type = input("A/B/X Day? ")
 
 def calendar_api():
@@ -35,7 +35,7 @@ def calendar_api():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                '.gitignore/credentials.json', SCOPES)
+                'credentials.json', SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open('token.pickle', 'wb') as token:
@@ -102,16 +102,17 @@ def setup(events):
     count = 0
     try:
         for event in events:
-            print(event['summary'])
+            #print(event['summary'])
             start_time = event['start'].get('dateTime', event['start'].get('date'))   
             start_time = start_time[start_time.find('T')+1: start_time.index('-06:00')]
 
             if day_type == 'A':
                 period = int(str(event['summary']).split()[1][0])
-                print (period)
             elif day_type == 'B':
                 period = int(str(event['summary']).split()[1][2])
-                print (period)
+                
+            #print (period)
+
             try:
                 ind = events_df.index[events_df['period'] == period][0]
                 events_df.at[ind, 'time'] = start_time
