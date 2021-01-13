@@ -15,7 +15,7 @@ from google.auth.transport.requests import Request
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 # Global variables
-events_df = pd.read_csv('data.csv')   # Create DataFrame to store event info
+events_df = pd.read_csv('.gitignore/data.csv')   # Create DataFrame to store event info
 day_type = input("A/B/X Day? ")
 
 def calendar_api():
@@ -35,7 +35,7 @@ def calendar_api():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
+                '.gitignore/credentials.json', SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open('token.pickle', 'wb') as token:
