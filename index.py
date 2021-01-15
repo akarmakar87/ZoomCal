@@ -45,12 +45,12 @@ def calendar_api():
 
     # Set datetime range for today only in correct format
 
-    day_start = str(datetime.date.today()) + 'T' + '00:00:0.0Z'
-    #now = datetime.datetime.utcnow().isoformat() + 'Z'
+    #day_start = str(datetime.date.today()) + 'T' + '00:00:0.0Z'
+    now = datetime.datetime.utcnow().isoformat() + 'Z'
     day_end = str(datetime.date.today()) + 'T' + '23:59:59.0Z'
 
     # Get events from School Activities calendar for today
-    events_result = service.events().list(calendarId='leanderisd.org_c684tcob9a0a8eufg3ctq2bu2o@group.calendar.google.com', timeMin=day_start, timeMax=day_end, maxResults=20, singleEvents=True, orderBy='startTime').execute()
+    events_result = service.events().list(calendarId='leanderisd.org_c684tcob9a0a8eufg3ctq2bu2o@group.calendar.google.com', timeMin=now, timeMax=day_end, maxResults=20, singleEvents=True, orderBy='startTime').execute()
     
     events = events_result.get('items', [])
     
