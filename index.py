@@ -100,8 +100,8 @@ def sign_in(meetingid,pswd):
 
 def setup(events):
     count = 0
-    try:
-        for event in events:
+    for event in events:
+        try:
             #print(event['summary'])
             start_time = event['start'].get('dateTime', event['start'].get('date'))   
             start_time = start_time[start_time.find('T')+1: start_time.index('-06:00')]
@@ -110,7 +110,7 @@ def setup(events):
                 period = int(str(event['summary']).split()[1][0])
             elif day_type == 'B':
                 period = int(str(event['summary']).split()[1][2])
-                
+                    
             #print (period)
 
             try:
@@ -119,8 +119,8 @@ def setup(events):
                 count += 1
             except:
                 pass
-    except:
-        print ("Error in events list")
+        except:
+            print ("Error in events list")
 
     print (events_df)
     return count
