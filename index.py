@@ -56,6 +56,7 @@ def calendar_api():
     
     if not events:
         print('No upcoming events found.')
+        sys.exit()
     else:
         return events
 
@@ -121,6 +122,7 @@ def setup(events):
                 pass
         except:
             print ("Error in events list")
+            sys.exit()
 
     print (events_df)
     return count
